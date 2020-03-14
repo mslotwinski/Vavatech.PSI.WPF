@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Vavatech.WPF.WPFClient.Resources"
+                    xmlns:m="clr-namespace:Vavatech.PSI.WPF.Models;assembly=Vavatech.PSI.WPF.Models"
+                    xmlns:c="clr-namespace:Vavatech.PSI.WPF.Common.Converters;assembly=Vavatech.PSI.WPF.Views">
+<DataTemplate DataType="{x:Type m:Activity}">
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <!--<Setter Property="Background" Value="Yellow"/>-->
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Type}" Value="{x:Static m:ActivityType.Working}">
+                            <Setter Property="Background" Value="Coral"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Type}" Value="{x:Static m:ActivityType.Delegated}">
+                            <Setter Property="Background" Value="Yellow"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Type}" Value="{x:Static m:ActivityType.Rest}">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Border BorderBrush="White" BorderThickness="1" Padding="10">
+             <StackPanel Orientation="Horizontal" >
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Width" Value="100"/>
+                </Style>
+            </StackPanel.Resources>
+                
+              <Label Content="{Binding Id}" />
+                <Label Content="{Binding Assigned.FirstName}" />
+                <Label Content="{Binding Assigned.LastName}" /> 
+                <Label Content="{Binding StarTime, StringFormat={}{0:yyyy-MM-dd HH:mm}}" />
+                <Label Content="{Binding EndTime, StringFormat={}{0:yyyy-MM-dd HH:mm}}" />
+                <Label Content="{Binding Type}" />
+            </StackPanel>
+
+            </Border>
+    </Grid>
+</DataTemplate>    
+    <!--Metro studio - program do ikonek-->
+    <BitmapImage x:Key="EmployeesImage" UriSource="../Assets/EmployeesIcon.png"></BitmapImage>
+</ResourceDictionary>
